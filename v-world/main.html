@@ -1,0 +1,27 @@
+<script type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=[인증키]"></script>
+ 
+<div class='title'>
+    <p></p>
+</div>
+    <article class="at_1">
+        <div class="search_div">
+            <span>
+                <select class='search_type'>
+                    <option value="road">도로명</option>
+                    <option value="parcel" selected>지번</option>
+                </select>
+            </span>
+                <span><input type="text" id="search" placeholder="찾고자하는 것을 입력하세요."></span>
+                <span><button class="search_btn">검색</button>
+        </div>
+        <div class="map_wrap">
+            <div id='vMap'></div>
+            <div class="custom_typecontrol radius_border">
+                <span id="btnRoadmap" class="selected_btn active">지도</span>
+                <span id="btnSkyview" class="selected_btn">로드뷰</span>
+                <span id="btnCommercial" class="selected_btn">상권</span>
+            </div>
+        </div>
+</article>
+
+<script src="map.js"></script>
