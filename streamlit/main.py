@@ -40,6 +40,6 @@ elif choice == 'ridar 업로드':
 	img_file = st.file_uploader('',type=['pcd', 'bin'])
 
 if st.button('옴니버스 연결'):
-	#target_url = 'http://203.250.148.52:8211/streaming/webrtc-client?server=203.250.148.52' # 52
+	#target_url = 'http://203.250.148.52:20516/streaming/client/' # 52
 	target_url = 'http://192.168.0.31:8211/streaming/webrtc-client?server=192.168.0.31'
 	webbrowser.open_new_tab(target_url)
