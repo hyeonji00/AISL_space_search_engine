@@ -13,7 +13,17 @@ text = st.text_input('')
 
 if st.button("검색"):
 	con = st.container()
-	con.write(f"{str(text)} 검색 !")
+	con.write(f"{str(text)} 리스트 !")
+	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+	link = '[ifland]('+target_url1+')'
+	st.markdown(link, unsafe_allow_html=True)
+	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+	link = '[제페토]('+target_url1+')'
+	st.markdown(link, unsafe_allow_html=True)
+	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+	link = '[S-Map]('+target_url1+')'
+	st.markdown(link, unsafe_allow_html=True)
+
 
 st.subheader('이미지 업로드')
 img_file = st.file_uploader('',type=['png', 'jpg', 'jpeg'])
