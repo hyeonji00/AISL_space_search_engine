@@ -54,7 +54,7 @@ if img_file is not None:
 
 
 st.subheader('LiDAR 업로드')
-LiDAR_file = st.file_uploader('',type=['pcd', 'bin'])
+LiDAR_file = st.file_uploader('',type=['*'])
 
 #if st.button('옴니버스 연결'):
 	#target_url = 'http://203.250.148.52:20516/streaming/client/' # 52
