@@ -9,15 +9,14 @@ def conv_coor(file_data, lat, lon):
     y = R * math.cos(lat) * math.sin(lon)
     z = R * math.sin(lat)
 
-    x *= 10
-    y *= 10
+
     z *= 1e-3 # fix
 
     file_data["node_locations"].append([x, y, z])
 
 
 
-file_path = './SEJONG_NODE.csv'
+file_path = './SEJONG_NODE_8.csv'
 data = pd.read_csv(file_path)
 
 file_data = OrderedDict()
@@ -31,6 +30,6 @@ for i in range(len(data)):
     conv_coor(file_data, latitude, longitude)
 
 
-with open('sejong_node.json', 'w', encoding='utf-8') as make_file:
+with open('sejong_node_9.json', 'w', encoding='utf-8') as make_file:
     json.dump(file_data, make_file, ensure_ascii=False, indent='\t')
 
