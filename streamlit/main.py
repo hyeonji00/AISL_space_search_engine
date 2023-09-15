@@ -8,10 +8,15 @@ import webbrowser
 
 ## streamlit run main.py --server.port 20519
 
-menu = ['이미지 업로드', 'ridar 업로드']
+menu = ['텍스트 업로드', '이미지 업로드', 'ridar 업로드']
 choice = st.sidebar.selectbox('메뉴', menu)
 
-if choice == '이미지 업로드':
+if choice == '텍스트 업로드':
+	st.subheader('텍스트 업로드')
+	text = st.text_input('') 
+	st.text(text)
+
+elif choice == '이미지 업로드':
 	st.subheader('이미지 업로드')
 	img_file = st.file_uploader('',type=['png', 'jpg', 'jpeg'])
 
@@ -37,9 +42,9 @@ if choice == '이미지 업로드':
 		img = Image.open('image/'+img_file.name)
 		st.image(img)
 
-elif choice == 'ridar 업로드':
-	st.subheader('ridar 업로드')
-	img_file = st.file_uploader('',type=['pcd', 'bin'])
+elif choice == 'LiDAR 업로드':
+	st.subheader('LiDAR 업로드')
+	LiDAR_file = st.file_uploader('',type=['pcd', 'bin'])
 
 #if st.button('옴니버스 연결'):
 	#target_url = 'http://203.250.148.52:20516/streaming/client/' # 52
@@ -51,5 +56,9 @@ link = '[search in Omniverse]('+target_url1+')'
 st.markdown(link, unsafe_allow_html=True)
 
 #target_url2 = 'https://www.3dcitydb.org/3dcitydb-web-map/1.7/3dwebclient/index.html?title=Berlin_Demo&batchSize=1&latitude='+'52.517479728958044'+'&longitude='+'13.411141287558161'+'&height=534.3099172951087&heading=345.2992773976952&pitch=-44.26228062802528&roll=359.933888621294&layer_0=url%3Dhttps%253A%252F%252Fwww.3dcitydb.org%252F3dcitydb%252Ffileadmin%252Fmydata%252FBerlin_Demo%252FBerlin_Buildings_rgbTexture_ScaleFactor_0.3%252FBerlin_Buildings_rgbTexture_collada_MasterJSON.json%26name%3DBrlin_Buildings_rgbTexture%26active%3Dtrue%26spreadsheetUrl%3Dhttps%253A%252F%252Fwww.google.com%252Ffusiontables%252FDataSource%253Fdocid%253D19cuclDgIHMqrRQyBwLEztMLeGzP83IBWfEtKQA3B%2526pli%253D1%2523rows%253Aid%253D1%26cityobjectsJsonUrl%3D%26minLodPixels%3D100%26maxLodPixels%3D1.7976931348623157e%252B308%26maxSizeOfCachedTiles%3D200%26maxCountOfVisibleTiles%3D200'
+<<<<<<< HEAD
 #link = '[search in 3DCityDb]('+target_url2+')'
+=======
+#ink = '[search in 3DCityDb]('+target_url2+')'
+>>>>>>> 81ca13c6ac976ac0faea170e661d9a7bdc77285f
 #st.markdown(link, unsafe_allow_html=True)
