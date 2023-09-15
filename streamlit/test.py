@@ -6,7 +6,9 @@ from datetime import datetime
 import os
 import webbrowser
 
-## streamlit run main.py --server.port 20519
+## streamlit run test.py --server.port 20519
+
+st.title('메타버스 공간 검색')
 
 st.subheader('텍스트 업로드')
 text = st.text_input('') 
@@ -60,7 +62,7 @@ LiDAR_file = st.file_uploader('',type=['pcd', 'bin'])
 	#webbrowser.open_new_tab(target_url)
 
 target_url1 = 'http://203.250.148.52:20516/streaming/client/'
-link = '[search in Omniverse]('+target_url1+')'
+link = '[Search in Meta-Sejong]('+target_url1+')'
 st.markdown(link, unsafe_allow_html=True)
 
 #if st.button('옴니버스 연결'):
