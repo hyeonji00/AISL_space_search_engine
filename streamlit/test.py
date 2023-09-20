@@ -5,65 +5,107 @@ from PIL import Image
 from datetime import datetime
 import os
 import webbrowser
+import unicodedata
 
+def normalize_string(s):
+    # 문자열을 NFD 정규화하여 조합 문자를 분리
+    normalized_s = unicodedata.normalize('NFD', s)
+    # 분리된 문자 중에서 결합 문자 제거
+    normalized_s = ''.join([c for c in normalized_s if not unicodedata.combining(c)])
+    return normalized_s
 ## streamlit run test.py --server.port 20519
 
 st.title('메타버스 공간 검색')
 
 st.subheader('텍스트 업로드')
-text = st.text_input('') 
+text = normalize_string(st.text_input('') )
 
-if st.button("검색"):
-	con = st.container()
-	con.write(f"{str(text)} 리스트 !")
-	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
-	link = '[ifland]('+target_url1+')'
+if text == normalize_string("대양AI센터"):
+	target_url = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
+	link = '[Searching]('+target_url+')'
 	st.markdown(link, unsafe_allow_html=True)
-	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
-	link = '[제페토]('+target_url1+')'
+
+elif text == normalize_string("군자관"):
+	target_url = 'https://smap.seoul.go.kr/#MjA2NTMxLjIxODgxODQ2NTIyLDU1MDAyNi4zNjQyNzU0MTM2LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
+	link = '[Searching]('+target_url+')'
 	st.markdown(link, unsafe_allow_html=True)
-	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
-	link = '[S-Map]('+target_url1+')'
+
+elif text == normalize_string("시계탑"):
+	target_url = 'https://smap.seoul.go.kr/#MjA2NTQwLjUyNjUxNzAyNzk2LDU1MDIwMi4xMzY4NDM4ODA0LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
+	link = '[Searching]('+target_url+')'
 	st.markdown(link, unsafe_allow_html=True)
+
+# if st.button("검색"):
+# 	con = st.container()
+# 	con.write(f"{str(text)} 리스트 !")
+# 	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+# 	link = '[ifland]('+target_url1+')'
+# 	st.markdown(link, unsafe_allow_html=True)
+# 	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+# 	link = '[제페토]('+target_url1+')'
+# 	st.markdown(link, unsafe_allow_html=True)
+# 	target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+# 	link = '[S-Map]('+target_url1+')'
+# 	st.markdown(link, unsafe_allow_html=True)
 
 
 st.subheader('이미지 업로드')
 img_file = st.file_uploader('',type=['png', 'jpg', 'jpeg'])
 
 if img_file is not None:
+	img_name = (img_file.name).split(".")[0]
 
-	# 이미지명이 고유하도록 시간을 활용하여 변경
-	current_time = datetime.now()
-	filename = current_time.isoformat().replace(":", "_")
-	img_file.name = filename + '.jpg'
+	if img_name == "대양AI센터":
+		target_url = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
+		link = '[Searching]('+target_url+')'
+		st.markdown(link, unsafe_allow_html=True)
 
-	# 실제로 저장
-	if not os.path.exists('image'):
-		os.makedirs('image')
+	elif img_name == "gunja":
+		target_url = 'https://smap.seoul.go.kr/#MjA2NTMxLjIxODgxODQ2NTIyLDU1MDAyNi4zNjQyNzU0MTM2LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
+		link = '[Searching]('+target_url+')'
+		st.markdown(link, unsafe_allow_html=True)
+
+	elif img_name == "watch":
+		target_url = 'https://smap.seoul.go.kr/#MjA2NTQwLjUyNjUxNzAyNzk2LDU1MDIwMi4xMzY4NDM4ODA0LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
+		link = '[Searching]('+target_url+')'
+		st.markdown(link, unsafe_allow_html=True)
+
+# if img_file is not None:
+
+# 	# 이미지명이 고유하도록 시간을 활용하여 변경
+# 	current_time = datetime.now()
+# 	filename = current_time.isoformat().replace(":", "_")
+# 	img_file.name = filename + '.jpg'
+
+# 	# 실제로 저장
+# 	if not os.path.exists('image'):
+# 		os.makedirs('image')
 		
-	with open(os.path.join('image', img_file.name), 'wb') as f:
-		f.write(img_file.getbuffer())
+# 	with open(os.path.join('image', img_file.name), 'wb') as f:
+# 		f.write(img_file.getbuffer())
 
-	st.success('파일 업로드 성공! 변경된 고유한 파일명 : ' + img_file.name)
+# 	st.success('파일 업로드 성공! 변경된 고유한 파일명 : ' + img_file.name)
 
 
-	# 경로로 이미지 출력
-	st.subheader('업로드한 이미지')
-	img = Image.open('image/'+img_file.name)
-	st.image(img)
+# 	# 경로로 이미지 출력
+# 	st.subheader('업로드한 이미지')
+# 	img = Image.open('image/'+img_file.name)
+# 	st.image(img)
 
 
 st.subheader('LiDAR 업로드')
 LiDAR_file = st.file_uploader('',type=['*'])
 
 #if st.button('옴니버스 연결'):
+	#target_url = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
 	#target_url = 'http://203.250.148.52:20516/streaming/client/' # 52
 	#target_url = 'http://192.168.0.31:8211/streaming/webrtc-client?server=192.168.0.31' # local
 	#webbrowser.open_new_tab(target_url)
 
-target_url1 = 'http://203.250.148.52:20516/streaming/client/'
-link = '[Search in Meta-Sejong]('+target_url1+')'
-st.markdown(link, unsafe_allow_html=True)
+# target_url1 = 'http://203.250.148.52:20516/streaming/client/'
+# target_url1 = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
+# link = '[Searching]('+target_url1+')'
+# st.markdown(link, unsafe_allow_html=True)
 
 #if st.button('옴니버스 연결'):
 	#target_url1 = 'http://203.250.148.52:20516/streaming/client/'
