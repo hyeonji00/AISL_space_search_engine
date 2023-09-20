@@ -20,6 +20,7 @@ st.title('메타버스 공간 검색')
 st.subheader('텍스트 업로드')
 text = normalize_string(st.text_input('') )
 
+
 if text == normalize_string("대양AI센터"):
 	target_url = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
 	link = '[Searching]('+target_url+')'
@@ -53,19 +54,19 @@ st.subheader('이미지 업로드')
 img_file = st.file_uploader('',type=['png', 'jpg', 'jpeg'])
 
 if img_file is not None:
-	img_name = (img_file.name).split(".")[0]
+	img_name = normalize_string((img_file.name).split(".")[0])
 
-	if img_name == "대양AI센터":
+	if img_name == normalize_string("대양AI센터"):
 		target_url = 'https://smap.seoul.go.kr/#MjA2NjM4LjI3OTg3MTEyNjAzLDU1MDE4Ny43MjQ5MDI0MTcsMCwwLjc4NTM5ODE2MzM5NzQ0ODMsMTkxLjEwMDAwMDAwMDAwMDAy&encode=y&3D'
 		link = '[Searching]('+target_url+')'
 		st.markdown(link, unsafe_allow_html=True)
 
-	elif img_name == "gunja":
+	elif img_name == normalize_string("군자관"):
 		target_url = 'https://smap.seoul.go.kr/#MjA2NTMxLjIxODgxODQ2NTIyLDU1MDAyNi4zNjQyNzU0MTM2LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
 		link = '[Searching]('+target_url+')'
 		st.markdown(link, unsafe_allow_html=True)
 
-	elif img_name == "watch":
+	elif img_name == normalize_string("시계탑"):
 		target_url = 'https://smap.seoul.go.kr/#MjA2NTQwLjUyNjUxNzAyNzk2LDU1MDIwMi4xMzY4NDM4ODA0LDAsMC43ODUzOTgxNjMzOTc0NDgzLDIxMA==&encode=y&3D'
 		link = '[Searching]('+target_url+')'
 		st.markdown(link, unsafe_allow_html=True)
